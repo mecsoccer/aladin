@@ -1,0 +1,36 @@
+{
+  "name": "aladin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "devstart": "nodemon ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mecsoccer/aladin.git"
+  },
+  "author": "Jaachimma Onyenze",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mecsoccer/aladin/issues"
+  },
+  "homepage": "https://github.com/mecsoccer/aladin#readme",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mocha": "^6.2.0",
+    "morgan": "^1.9.1",
+    "swagger-ui-express": "^4.0.7"
+  },
+  "devDependencies": {
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "nodemon": "^1.19.1"
+  }
+}
