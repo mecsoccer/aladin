@@ -1,0 +1,201 @@
+{
+	"swagger": "2.0",
+	"info": {
+	  "version": "1.0",
+	  "title": "coding challenge",
+	  "description": "natterbase coding challenge"
+	},
+	"schemes": [
+	  "https"
+	],
+	"host": "http://localhost:3000",
+	"basePath": "/api/v1",
+	
+	"tags": [
+	  {
+		"name": "Validation",
+		"description": "Input fields validation"
+	  },
+	  {
+		"name": "Remove",
+		"description": "Remove attribute from object"
+      },
+      {
+          "name": "Aladin",
+          "description":"Get the least index for aladin challenge"
+      }
+	],
+	"paths": {
+	  "/validation": {
+		"post": {
+		  "description": "validate input field given data array and rules array",
+		  "summary": "Return 'valid' or array of missing keys",
+		  "tags": [
+			"Validation"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+		  "produces": [
+			"application/json"
+          ],
+          "parameters": [
+			{
+			  "in": "body",
+			  "name": "body",
+			  "required": true,
+			  "description": "object to be supplied as body",
+			  "schema": {
+				"$ref": "#/definitions/InputValidation"
+			  }
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "valid inputs"
+			},
+			"400": {
+			  "description": "Invalid inputs"
+			}
+		  }
+		}
+	  },
+	  "/remove": {
+		"delete": {
+		  "description": "Remove supplied key, value pair from object",
+		  "summary": "returns object or 'non available'",
+		  "tags": [
+			"Remove"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+		  "produces": [
+			"application/json"
+		  ],
+		  "parameters": [
+			{
+			  "in": "body",
+			  "name": "body",
+			  "required": true,
+			  "description": "contain object and key to be removed",
+			  "schema": {
+				"$ref": "#/definitions/DeleteOperation"
+			  }
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "Success"
+			},
+			"400": {
+			  "description": "attribute not found"
+			}
+		  }
+		}
+	  },
+	  "/aladin": {
+		"post": {
+		  "description": "get least aladin start index",
+		  "summary": "return least index or -1",
+		  "tags": [
+			"Aladin"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+		  "produces": [
+			"application/json,"
+          ],
+          "parameters": [
+			{
+			  "in": "body",
+			  "name": "body",
+			  "required": true,
+			  "description": "magic and dist objects",
+			  "schema": {
+				"$ref": "#/definitions/AladinChallenge"
+			  }
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "Success"
+			},
+			"400": {
+			  "description": "invalid input"
+			}
+		  }
+		}
+      }
+    },
+	"definitions": {
+	  "InputValidation": {
+		"title": "validation",
+		"type": "object",
+		"properties": {
+          "data": {
+            "description": "input field",
+            "type": "object"
+          },
+		  "rules": {
+			"description": "required fields",
+			"type": "array"
+		  }
+		},
+		"example": {
+          "data": {
+            "type": "durban",
+            "crux": "indices",
+            "color": "green",
+            "title": "indict the idiot"
+          },
+		  "rules": ["type", "crux", "color", "title"]
+		},
+		"required": [
+            "type", "crux", "color", "title"
+		]
+	  },
+	  "DeleteOperation": {
+		"title": "Delete field",
+		"type": "object",
+		"properties": {
+		  "data": {
+			"description": "Object to delete from",
+			"type": "object"
+		  },
+		  "item": {
+			"description": "Item to be deleted",
+			"type": "string"
+		  }
+		},
+		"example": {
+            "data": {
+                "type": "durban",
+                "crux": "indices",
+                "color": "green",
+                "title": "indict the idiot"
+            },
+            "item": "type"
+		}
+	  },
+	  "AladinChallenge": {
+        "title": "Least aladin challenge",
+        "type": "object",
+        "properties": {
+            "magic": {
+              "description": "magic resources array",
+              "type": "array"
+            },
+            "dist": {
+              "description": "distance",
+              "type": "array"
+            }
+        },
+        "example": {
+            "magic": [3, 2, 5, 4],
+            "dist": [2, 3, 4, 2]
+        }
+      }
+    }
+}
